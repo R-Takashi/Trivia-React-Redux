@@ -44,7 +44,7 @@ describe('Testando o componente Login', () => {
     const inputName = screen.getByLabelText(/nome/i);
     const inputEmail = screen.getByLabelText(/email/i);
     const btnDisabled = screen.getByRole('button', { name: /play/i });
-    const name = 'Aaaaa'
+    const name = 'Aaaaa';
 
     expect(inputName).toBeInTheDocument();
     expect(inputEmail).toBeInTheDocument();

@@ -13,6 +13,7 @@ export default class Questions extends Component {
   shuffleArray = (inputArray) => {
     const half = 0.5;
     return inputArray.sort(() => Math.random() - half);
+    // referência da funçaõ de aleatorizar array: https://www.delftstack.com/pt/howto/javascript/shuffle-array-javascript/
   }
 
   render() {

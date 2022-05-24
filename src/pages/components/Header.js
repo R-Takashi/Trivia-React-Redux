@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
   render() {
@@ -10,7 +11,11 @@ class Header extends Component {
 
     return (
       <div>
-        <img data-testid="header-profile-picture" src={`https://www.gravatar.com/avatar/${hash}`} />
+        <img
+          data-testid="header-profile-picture"
+          src={ `https://www.gravatar.com/avatar/${hash}` }
+          alt={ name }
+        />
         <h3 data-testid="header-player-name">{ name }</h3>
         <p data-testid="header-score">0</p>
 
@@ -25,3 +30,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Header);
+
+Header.propTypes = {
+  email: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};

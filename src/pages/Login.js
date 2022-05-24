@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Input from './components/Input';
 import { setStorage } from '../services/localStorage';
+import { saveData } from '../redux/actions';
+import { connect } from 'react-redux';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -36,6 +38,10 @@ export default class Login extends Component {
 
     const { history } = this.props;
     history.push('/game');
+
+    const { email, player } = this.state;
+    const { getData } = this.props;
+    getData(email, player);
   }
 
   render() {
@@ -84,6 +90,12 @@ export default class Login extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  getData: (email, player) => dispatch(saveData(email, player)),
+});
+
 Login.propTypes = {
   history: PropTypes.objectOf(PropTypes.shape).isRequired,
 };
+
+export default connect(null, mapDispatchToProps)(Login);

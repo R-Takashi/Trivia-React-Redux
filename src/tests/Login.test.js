@@ -44,12 +44,13 @@ describe('Testando o componente Login', () => {
     const inputName = screen.getByLabelText(/nome/i);
     const inputEmail = screen.getByLabelText(/email/i);
     const btnDisabled = screen.getByRole('button', { name: /play/i });
+    const name = 'Aaaaa';
 
     expect(inputName).toBeInTheDocument();
     expect(inputEmail).toBeInTheDocument();
     expect(btnDisabled).toBeDisabled();
 
-    userEvent.type(inputName, 'aaaa');
+    userEvent.type(inputName, name);
     userEvent.type(inputEmail, 'teste@teste.com');
 
     const btnEnabled = screen.getByRole('button', { name: /play/i });
@@ -58,8 +59,11 @@ describe('Testando o componente Login', () => {
     userEvent.click(btnEnabled);
 
     // jest.useFakeTimers({timerLimit: 5000})
-    // expect(history.location.pathname).toBe('/game');
-    const entrei = await screen.findByText(/entrei/i);
-    expect(entrei).toBeInTheDocument();
+    jest.setTimeout(() => {
+      console.log('olá');
+    }, 5000);
+    const nameInDocument = await screen.findByText(name);
+    expect(nameInDocument).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/game');
   });
 })

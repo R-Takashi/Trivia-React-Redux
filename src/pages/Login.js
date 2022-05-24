@@ -17,7 +17,6 @@ class Login extends Component {
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    console.log(value);
 
     this.setState({
       [name]: value,
@@ -34,7 +33,6 @@ class Login extends Component {
   onSubmit = async () => {
     const response = await fetch('https://opentdb.com/api_token.php?command=request');
     const result = await response.json();
-    console.log(result);
 
     setStorage(result.token);
 
@@ -48,6 +46,7 @@ class Login extends Component {
 
   render() {
     const { email, player, isDisabled } = this.state;
+    const { history } = this.props;
     return (
       <div>
         <form>
@@ -76,6 +75,14 @@ class Login extends Component {
             onClick={ this.onSubmit }
           >
             Play
+          </button>
+
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={ () => history.push('/settings') }
+          >
+            Configurações
           </button>
         </form>
       </div>

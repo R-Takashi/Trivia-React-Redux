@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Input from './components/Input';
 import { setStorage } from '../services/localStorage';
 import { saveData } from '../redux/actions';
-import { connect } from 'react-redux';
 
 class Login extends Component {
   constructor() {
@@ -96,6 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Login.propTypes = {
   history: PropTypes.objectOf(PropTypes.shape).isRequired,
+  getData: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);

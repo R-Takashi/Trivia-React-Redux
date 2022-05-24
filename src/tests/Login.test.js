@@ -58,12 +58,28 @@ describe('Testando o componente Login', () => {
 
     userEvent.click(btnEnabled);
 
-    // jest.useFakeTimers({timerLimit: 5000})
-    jest.setTimeout(() => {
-      console.log('olá');
-    }, 5000);
     const nameInDocument = await screen.findByText(name);
     expect(nameInDocument).toBeInTheDocument();
     expect(history.location.pathname).toBe('/game');
+  });
+
+  it('Verificando se o botão Configurações está na tela.', () => {
+    renderWithRouterAndRedux(<App />);
+    const btnSettings = screen.getByRole('button', { name: /play/i });
+
+    expect(btnSettings).toBeInTheDocument();
+  });
+
+  it('Verificando se ao apertar no botão Configurações , vai para a pagina de configurações.', () => {
+    const {history} = renderWithRouterAndRedux(<App />);
+    const btnSettings = screen.getByRole('button', { name: /configurações/i });
+
+    expect(btnSettings).toBeInTheDocument();
+
+    userEvent.click(btnSettings);
+
+    const title = screen.getByRole('heading', {level: 1, name: "Configurações"});
+    expect(title).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/settings');
   });
 })

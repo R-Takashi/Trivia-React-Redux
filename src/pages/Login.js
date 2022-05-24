@@ -32,7 +32,6 @@ export default class Login extends Component {
   onSubmit = async () => {
     const response = await fetch('https://opentdb.com/api_token.php?command=request');
     const result = await response.json();
-    console.log(result);
 
     setStorage(result.token);
 
@@ -42,6 +41,7 @@ export default class Login extends Component {
 
   render() {
     const { email, player, isDisabled } = this.state;
+    const { history } = this.props;
     return (
       <div>
         <form>
@@ -70,6 +70,14 @@ export default class Login extends Component {
             onClick={ this.onSubmit }
           >
             Play
+          </button>
+
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={ () => history.push('/settings') }
+          >
+            Configurações
           </button>
         </form>
       </div>

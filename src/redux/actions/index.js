@@ -1,5 +1,6 @@
 export const SAVE_DATA = 'SAVE_DATA';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
+export const SET_SCORE = 'SET_SCORE';
 
 export const saveData = (email, name) => ({
   type: SAVE_DATA,
@@ -11,6 +12,11 @@ export const getQuestions = (data) => ({
   type: GET_QUESTIONS,
   response_code: data.response_code,
   results: data.results,
+});
+
+export const setScore = (score) => ({
+  type: SET_SCORE,
+  score,
 });
 
 export const fetchQuestions = (token) => async (dispatch) => {

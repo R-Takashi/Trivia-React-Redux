@@ -1,4 +1,4 @@
-import { SAVE_DATA, SET_SCORE } from '../actions';
+import { SAVE_DATA, SET_SCORE, SET_ASSERTIONS } from '../actions';
 
 const INITIAL_STATE = {
 
@@ -21,6 +21,13 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: action.score,
+      assertions: state.assertions + 1,
+    };
+
+  case SET_ASSERTIONS:
+    return {
+      ...state,
+      assertions: action.assertions,
     };
 
   default:

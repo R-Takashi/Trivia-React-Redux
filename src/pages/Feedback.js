@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import HeaderFeedback from './components/HeaderFeedback';
 
 export default class Feedback extends Component {
   render() {
     const { history } = this.props;
     return (
       <div>
+        <HeaderFeedback />
         <h1 data-testid="feedback-text">
           Feedback
         </h1>

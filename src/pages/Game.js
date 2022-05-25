@@ -21,13 +21,13 @@ class Game extends Component {
   }
 
   render() {
-    const { results, response_code: response } = this.props;
+    const { results, response_code: response, history } = this.props;
     const codeError = 3;
     console.log(results, response);
     return response !== codeError && (
       <div>
         <Header />
-        <Questions questions={ results } />
+        <Questions questions={ results } history={ history } />
       </div>
     );
   }

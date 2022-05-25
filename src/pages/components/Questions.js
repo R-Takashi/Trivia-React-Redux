@@ -13,7 +13,7 @@ class Questions extends Component {
       correct: 'yellow',
       incorrect: 'yellow',
       isDisabled: false,
-      seconds: 0,
+      seconds: 30,
       score: 0,
       nextButton: false,
     };
@@ -31,22 +31,30 @@ class Questions extends Component {
 
   verifyDifficulty = (difficulty) => {
     const multThree = 3;
-    if (difficulty === 'hard') {
+    switch (difficulty) {
+    case 'hard':
       return multThree;
-    } if (difficulty === 'medium') {
+    case 'medium':
       return 2;
+    case 'easy':
+      return 1;
+    default:
+      return 1;
     }
-    return 1;
   }
 
   onClick = (answer, { target }) => {
     this.timerDisable();
+    console.log(answer.difficulty);
     const scoreTen = 10;
     const { score, seconds } = this.state;
     if (target.id === 'correct') {
       const { addScore } = this.props;
       const pontos = score + scoreTen
       + (seconds * this.verifyDifficulty(answer.difficulty));
+      this.setState({
+        score: pontos,
+      });
       addScore(pontos);
     }
     this.setState({
@@ -58,14 +66,19 @@ class Questions extends Component {
 
   nextQuestion = () => {
     const { questionsIndex } = this.state;
-    const { questions } = this.props;
+    const { questions, history } = this.props;
+    console.log(history);
+
+    if (questionsIndex === questions.length - 1) {
+      history.push('/feedback');
+    }
 
     this.setState({
       questionsIndex: questionsIndex < questions.length - 1
         ? questionsIndex + 1 : 0,
       correct: 'yellow',
       incorrect: 'yellow',
-      seconds: 0,
+      seconds: 30,
       nextButton: false,
     });
 
@@ -77,7 +90,7 @@ class Questions extends Component {
     timerInterval = setInterval(() => {
       const { seconds } = this.state;
       this.setState({
-        seconds: seconds + 1,
+        seconds: seconds - 1,
       });
     }, timer);
   }
@@ -90,7 +103,8 @@ class Questions extends Component {
     this.timerDisable();
     this.setState({
       isDisabled: true,
-      seconds: 0,
+      seconds: 30,
+      nextButton: true,
     });
   }
 
@@ -101,10 +115,9 @@ class Questions extends Component {
     const currentQuestion = questions[questionsIndex];
     const answers = this.shuffleArray([...currentQuestion.incorrect_answers,
       currentQuestion.correct_answer]);
-    const thirtySeconds = 10;
     return (
       <div>
-        {seconds === thirtySeconds && this.timeout()}
+        {seconds === 0 && this.timeout()}
         <p>{seconds}</p>
         <h3 data-testid="question-category">{ questions[questionsIndex].category }</h3>
         <p data-testid="question-text">{ questions[questionsIndex].question }</p>
@@ -149,4 +162,5 @@ export default connect(null, mapDispatchToProps)(Questions);
 Questions.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape).isRequired,
   addScore: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.shape).isRequired,
 };

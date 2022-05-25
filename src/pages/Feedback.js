@@ -16,6 +16,14 @@ export default class Feedback extends Component {
         >
           Ranking
         </button>
+
+        <button
+          data-testid="btn-play-again"
+          type="button"
+          onClick={ () => history.push('/') }
+        >
+          Play Again
+        </button>
       </div>
     );
   }

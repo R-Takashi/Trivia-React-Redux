@@ -47,7 +47,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Game);
 
 Game.propTypes = {
   response_code: PropTypes.number.isRequired,
-  history: PropTypes.shape.isRequired,
+  history: PropTypes.objectOf(PropTypes.shape).isRequired,
   getQuestions: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };

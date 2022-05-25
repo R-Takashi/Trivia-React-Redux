@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Feedback extends Component {
   render() {
@@ -19,3 +20,7 @@ export default class Feedback extends Component {
     );
   }
 }
+
+Feedback.propTypes = {
+  history: PropTypes.objectOf(PropTypes.shape).isRequired,
+};

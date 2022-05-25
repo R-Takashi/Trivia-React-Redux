@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import HeaderFeedback from './components/HeaderFeedback';
 
 class Feedback extends Component {
   render() {
@@ -8,9 +9,7 @@ class Feedback extends Component {
     const threeAssertions = 3;
     return (
       <div>
-        {/* <h1 data-testid="feedback-text">
-          Feedback
-        </h1> */}
+        <HeaderFeedback />
         {
           assertions < threeAssertions && (
             <h1 data-testid="feedback-text">Could be better...</h1>

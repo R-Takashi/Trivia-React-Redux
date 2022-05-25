@@ -12,8 +12,7 @@ export default class Ranking extends Component {
           onClick={ () => history.push('/') }
           data-testid="btn-go-home"
         >
-          Voltar ao Inicio
-
+          Voltar para a tela inicial
         </button>
       </div>
     );

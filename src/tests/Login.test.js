@@ -41,6 +41,7 @@ describe('Testando o componente Login', () => {
 
   it('Verificando se, ao apertar no botão, é redirecionado a uma nova página.', async () => {
     const {history} = renderWithRouterAndRedux(<App />);
+    history.push('/');
     const inputName = screen.getByLabelText(/nome/i);
     const inputEmail = screen.getByLabelText(/email/i);
     const btnDisabled = screen.getByRole('button', { name: /play/i });
@@ -58,10 +59,14 @@ describe('Testando o componente Login', () => {
 
     userEvent.click(btnEnabled);
 
-    await jest.setTimeout(() => {
+    await jest.setTimeout(()=> {
       expect(history.location.pathname).toBe('/game');
-    }, 3000)
+    })
 
+    const nameInDocument = await screen.findByText(name);
+    expect(nameInDocument).toBeInTheDocument();
+    // expect(history.location.pathname).toBe('/game');
+    
   });
 
   it('Verificando se o botão Configurações está na tela.', () => {

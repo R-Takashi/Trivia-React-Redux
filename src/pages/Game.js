@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { fetchQuestions } from '../redux/actions';
 import Header from './components/Header';
 import Questions from './components/Questions';
+import { getStorage } from '../services/localStorage';
 
 class Game extends Component {
   async componentDidMount() {
-    const token = localStorage.getItem('token');
+    const token = getStorage();
     const { getQuestions } = this.props;
     await getQuestions(token);
     this.checkToken();

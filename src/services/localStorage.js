@@ -1,6 +1,6 @@
 export function getStorage() {
   if (localStorage.length > 0) {
-    const storage = JSON.parse(localStorage.getItem('token'));
+    const storage = localStorage.getItem('token');
     return storage;
   }
 }

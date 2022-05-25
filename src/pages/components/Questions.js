@@ -30,17 +30,8 @@ class Questions extends Component {
   }
 
   verifyDifficulty = (difficulty) => {
-    const multThree = 3;
-    switch (difficulty) {
-    case 'hard':
-      return multThree;
-    case 'medium':
-      return 2;
-    case 'easy':
-      return 1;
-    default:
-      return 1;
-    }
+    const difficulties = { easy: 1, medium: 2, hard: 3 };
+    return difficulties[difficulty];
   }
 
   onClick = (answer, { target }) => {

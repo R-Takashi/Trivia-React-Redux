@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setScore } from '../../redux/actions';
+import { setScore, setAssertions } from '../../redux/actions';
 
 let timerInterval;
 class Questions extends Component {
@@ -16,6 +16,7 @@ class Questions extends Component {
       seconds: 30,
       score: 0,
       nextButton: false,
+      assertions: 0,
     };
   }
 
@@ -38,15 +39,19 @@ class Questions extends Component {
     this.timerDisable();
     console.log(answer.difficulty);
     const scoreTen = 10;
-    const { score, seconds } = this.state;
+    const { score, seconds, assertions } = this.state;
     if (target.id === 'correct') {
-      const { addScore } = this.props;
+      const { addScore, addAssertions } = this.props;
+      const acertos = assertions + 1;
       const pontos = score + scoreTen
       + (seconds * this.verifyDifficulty(answer.difficulty));
       this.setState({
         score: pontos,
+        assertions: acertos,
       });
+      // const { assertions: a } = this.state;
       addScore(pontos);
+      addAssertions(acertos);
     }
     this.setState({
       correct: 'rgb(6, 240, 15)',
@@ -60,7 +65,7 @@ class Questions extends Component {
     const { questions, history } = this.props;
     console.log(history);
 
-    if (questionsIndex === questions.length - 1) {
+    if (questionsIndex >= questions.length - 1) {
       history.push('/feedback');
     }
 
@@ -146,6 +151,7 @@ class Questions extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   addScore: (score) => dispatch(setScore(score)),
+  addAssertions: (assertions) => dispatch(setAssertions(assertions)),
 });
 
 export default connect(null, mapDispatchToProps)(Questions);
@@ -153,5 +159,6 @@ export default connect(null, mapDispatchToProps)(Questions);
 Questions.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape).isRequired,
   addScore: PropTypes.func.isRequired,
+  addAssertions: PropTypes.func.isRequired,
   history: PropTypes.objectOf(PropTypes.shape).isRequired,
 };

@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-export default class Feedback extends Component {
+class Feedback extends Component {
   render() {
-    const { history } = this.props;
+    const { history, assertions } = this.props;
+    const threeAssertions = 3;
     return (
       <div>
-        <h1 data-testid="feedback-text">
+        {/* <h1 data-testid="feedback-text">
           Feedback
-        </h1>
+        </h1> */}
+        {
+          assertions < threeAssertions && (
+            <h1 data-testid="feedback-text">Could be better...</h1>
+          )
+        }
+        {
+          assertions >= threeAssertions && <h1 data-testid="feedback-text">Well Done!</h1>
+        }
+
         <button
           data-testid="btn-ranking"
           type="button"
@@ -29,6 +40,13 @@ export default class Feedback extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  assertions: state.player.assertions,
+});
+
+export default connect(mapStateToProps)(Feedback);
+
 Feedback.propTypes = {
   history: PropTypes.objectOf(PropTypes.shape).isRequired,
+  assertions: PropTypes.number.isRequired,
 };

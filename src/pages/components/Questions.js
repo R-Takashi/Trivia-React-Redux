@@ -39,7 +39,7 @@ class Questions extends Component {
     this.timerDisable();
     const scoreTen = 10;
     const { score, seconds, assertions } = this.state;
-    
+
     if (target.id === 'correct') {
       const { addScore, addAssertions } = this.props;
       const acertos = assertions + 1;
@@ -111,6 +111,7 @@ class Questions extends Component {
     const currentQuestion = questions[questionsIndex];
     const answers = this.shuffleArray([...currentQuestion.incorrect_answers,
       currentQuestion.correct_answer]);
+
     return (
       <div>
         {seconds === 0 && this.timeout()}

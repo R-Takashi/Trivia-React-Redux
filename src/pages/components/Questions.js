@@ -37,9 +37,9 @@ class Questions extends Component {
 
   onClick = (answer, { target }) => {
     this.timerDisable();
-    console.log(answer.difficulty);
     const scoreTen = 10;
     const { score, seconds, assertions } = this.state;
+    
     if (target.id === 'correct') {
       const { addScore, addAssertions } = this.props;
       const acertos = assertions + 1;

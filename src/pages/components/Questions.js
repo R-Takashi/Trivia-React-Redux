@@ -111,6 +111,7 @@ class Questions extends Component {
     const currentQuestion = questions[questionsIndex];
     const answers = this.shuffleArray([...currentQuestion.incorrect_answers,
       currentQuestion.correct_answer]);
+
     return (
       <div>
         {seconds === 0 && this.timeout()}

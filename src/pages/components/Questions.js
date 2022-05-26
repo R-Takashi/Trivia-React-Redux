@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import md5 from 'crypto-js/md5';
 import { setScore, setAssertions } from '../../redux/actions';
+import { getRanking, setRanking } from '../../services/localStorage';
 
 let timerInterval;
 class Questions extends Component {
@@ -62,10 +64,18 @@ class Questions extends Component {
 
   nextQuestion = () => {
     const { questionsIndex } = this.state;
-    const { questions, history } = this.props;
-    console.log(history);
+    const { questions } = this.props;
 
     if (questionsIndex >= questions.length - 1) {
+      const { email, name, history } = this.props;
+      const oldRank = getRanking() || [];
+      const hash = md5(email).toString();
+      const { score } = this.state;
+      const ranking = [...oldRank,
+        { name, score, picture: `https://www.gravatar.com/avatar/${hash}` },
+      ];
+      setRanking(ranking);
+
       history.push('/feedback');
     }
 
@@ -155,11 +165,18 @@ const mapDispatchToProps = (dispatch) => ({
   addAssertions: (assertions) => dispatch(setAssertions(assertions)),
 });
 
-export default connect(null, mapDispatchToProps)(Questions);
+const mapStateToProps = (state) => ({
+  email: state.player.gravatarEmail,
+  name: state.player.name,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);
 
 Questions.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.shape).isRequired,
   addScore: PropTypes.func.isRequired,
   addAssertions: PropTypes.func.isRequired,
   history: PropTypes.objectOf(PropTypes.shape).isRequired,
+  email: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };

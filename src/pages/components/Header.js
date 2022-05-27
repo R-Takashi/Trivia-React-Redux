@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import HeaderStyle from './Header/styles';
+import logo from '../../trivia.png';
 
 class Header extends Component {
   render() {
@@ -9,16 +11,26 @@ class Header extends Component {
     const hash = md5(email).toString();
 
     return (
-      <div>
-        <img
-          data-testid="header-profile-picture"
-          src={ `https://www.gravatar.com/avatar/${hash}` }
-          alt={ name }
-        />
-        <h3 data-testid="header-player-name">{ name }</h3>
-        <p data-testid="header-score">{ score }</p>
-
-      </div>
+      <HeaderStyle>
+        <section>
+          <img
+            data-testid="header-profile-picture"
+            src={ `https://www.gravatar.com/avatar/${hash}` }
+            alt={ name }
+          />
+          <h3 data-testid="header-player-name">
+            { name }
+          </h3>
+        </section>
+        <img src={ logo } alt="logo" />
+        <div>
+          <p>
+            Score:
+            {' '}
+            <span data-testid="header-score">{ score }</span>
+          </p>
+        </div>
+      </HeaderStyle>
     );
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
+import { QuestionStyle, TimerCategory, Container } from './Questions/styles';
 import { setScore, setAssertions } from '../../redux/actions';
 import { getRanking, setRanking } from '../../services/localStorage';
 
@@ -12,8 +13,8 @@ class Questions extends Component {
 
     this.state = {
       questionsIndex: 0,
-      correct: 'yellow',
-      incorrect: 'yellow',
+      correct: '#7f5af0',
+      incorrect: '#7f5af0',
       isDisabled: false,
       seconds: 30,
       score: 0,
@@ -59,6 +60,7 @@ class Questions extends Component {
       correct: 'rgb(6, 240, 15)',
       incorrect: 'red',
       nextButton: true,
+      isDisabled: true,
     });
   }
 
@@ -82,10 +84,11 @@ class Questions extends Component {
     this.setState({
       questionsIndex: questionsIndex < questions.length - 1
         ? questionsIndex + 1 : 0,
-      correct: 'yellow',
-      incorrect: 'yellow',
+      correct: '#7f5af0',
+      incorrect: '#7f5af0',
       seconds: 30,
       nextButton: false,
+      isDisabled: false,
     });
 
     this.timer();
@@ -109,7 +112,7 @@ class Questions extends Component {
     this.timerDisable();
     this.setState({
       isDisabled: true,
-      seconds: 30,
+      seconds: 'Acabou o Tempo',
       nextButton: true,
     });
   }
@@ -123,39 +126,44 @@ class Questions extends Component {
       currentQuestion.correct_answer]);
 
     return (
-      <div>
-        {seconds === 0 && this.timeout()}
-        <p>{seconds}</p>
-        <h3 data-testid="question-category">{ questions[questionsIndex].category }</h3>
-        <p data-testid="question-text">{ questions[questionsIndex].question }</p>
-        {answers.map((answer, index) => (
-          <div key={ index } data-testid="answer-options">
-            <button
-              id={ (answer === currentQuestion.correct_answer) ? 'correct' : 'wrong' }
-              data-testid={ (answer === currentQuestion.correct_answer)
-                ? 'correct-answer'
-                : `wrong-answer-${index}` }
-              type="button"
-              style={ (answer === currentQuestion.correct_answer)
-                ? { border: `3px solid ${correct}` }
-                : { border: `3px solid ${incorrect}` } }
-              onClick={ (event) => this.onClick(currentQuestion, event) }
-              disabled={ isDisabled }
-            >
-              {answer}
-            </button>
-          </div>
-        ))}
+      <Container>
+        <TimerCategory>
+          {seconds === 0 && this.timeout()}
+          <h2>Timer</h2>
+          <h3>{seconds}</h3>
+          <h3 data-testid="question-category">{ questions[questionsIndex].category }</h3>
+        </TimerCategory>
+        <QuestionStyle>
+          <h1 data-testid="question-text">{ questions[questionsIndex].question }</h1>
+          {answers.map((answer, index) => (
+            <div key={ index } data-testid="answer-options">
+              <button
+                id={ (answer === currentQuestion.correct_answer) ? 'correct' : 'wrong' }
+                data-testid={ (answer === currentQuestion.correct_answer)
+                  ? 'correct-answer'
+                  : `wrong-answer-${index}` }
+                type="button"
+                style={ (answer === currentQuestion.correct_answer)
+                  ? { border: `3px solid ${correct}` }
+                  : { border: `3px solid ${incorrect}` } }
+                onClick={ (event) => this.onClick(currentQuestion, event) }
+                disabled={ isDisabled }
+              >
+                {answer}
+              </button>
+            </div>
+          ))}
 
-        { nextButton && (
-          <button
-            data-testid="btn-next"
-            type="button"
-            onClick={ this.nextQuestion }
-          >
-            Next
-          </button>)}
-      </div>
+          { nextButton && (
+            <button
+              data-testid="btn-next"
+              type="button"
+              onClick={ this.nextQuestion }
+            >
+              Next
+            </button>)}
+        </QuestionStyle>
+      </Container>
     );
   }
 }

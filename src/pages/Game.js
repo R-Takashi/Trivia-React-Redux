@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Container from './Game/styles';
 import { fetchQuestions } from '../redux/actions';
 import Header from './components/Header';
 import Questions from './components/Questions';
@@ -25,10 +26,10 @@ class Game extends Component {
     const codeError = 3;
     console.log(results, response);
     return response !== codeError && (
-      <div>
+      <Container>
         <Header />
         <Questions questions={ results } history={ history } />
-      </div>
+      </Container>
     );
   }
 }

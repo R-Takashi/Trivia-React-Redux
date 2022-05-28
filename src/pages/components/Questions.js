@@ -134,8 +134,13 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.props;
-    const { questionsIndex, correct, incorrect,
-      isDisabled = false, seconds, nextButton, shuffledAnswers } = this.state;
+    const { questionsIndex,
+      correct,
+      incorrect,
+      isDisabled,
+      seconds,
+      nextButton,
+      shuffledAnswers } = this.state;
 
     const currentQuestion = questions[questionsIndex];
 

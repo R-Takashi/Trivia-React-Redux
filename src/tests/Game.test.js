@@ -14,7 +14,7 @@ describe('Testando o componente de Game', () => {
     const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE);
     history.push('/game');
 
-    const profilePicEl = await screen.findByRole('img', { name: INITIAL_STATE.player.name });
+    const profilePicEl = await screen.findByRole('img', { name: "imagem-perfi" });
     expect(profilePicEl).toBeInTheDocument();
 
     const nameEl = screen.getByText(INITIAL_STATE.player.name);

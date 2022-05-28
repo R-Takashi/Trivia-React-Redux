@@ -2,6 +2,7 @@ export const SAVE_DATA = 'SAVE_DATA';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const SET_SCORE = 'SET_SCORE';
 export const SET_ASSERTIONS = 'SET_ASSERTIONS';
+export const RESET_QUESTIONS = 'RESET_QUESTIONS';
 
 export const saveData = (email, name) => ({
   type: SAVE_DATA,
@@ -13,6 +14,10 @@ export const getQuestions = (data) => ({
   type: GET_QUESTIONS,
   response_code: data.response_code,
   results: data.results,
+});
+
+export const resetQuestions = () => ({
+  type: RESET_QUESTIONS,
 });
 
 export const setScore = (score) => ({

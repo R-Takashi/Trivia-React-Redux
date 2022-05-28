@@ -7,7 +7,7 @@ background-color: #FAFAFA;
 display: flex;
 flex-direction: column;
 justify-content: space-evenly;
-height: 500px;
+height: 600px;
 margin-left: 50px;
 margin-right: 50px;
 box-shadow: 0 4px 4px white;
@@ -19,18 +19,24 @@ div {
 
 button{
   width: 80%;
-  padding: 10px;
+  padding: 14px;
   border-radius: 10px;
   cursor: pointer;
-  background-color: #463186;
+  background-color: #CC9F38;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  color: white;
+  color: black;
   font-weight: bold;
+  font-size: 20px;
+
+    :hover {
+      box-shadow: 0 2px 2px black;
+    }
 
     :disabled {
       cursor: auto;
-      color: #white;
-      background-color: #72757e;
+      color: black;
+      padding: 14px;
+      background-color: #EDD998;
     }
   }
 `;
@@ -52,6 +58,6 @@ box-shadow: 0 4px 4px white;
 `;
 
 export const Container = styled.div`
-background-color: #16161a;
+background-color: #545454;
 height: 100%;
 `;

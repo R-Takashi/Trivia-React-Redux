@@ -1,13 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-// import logo from './trivia.png';
-import './App.css';
 import { createGlobalStyle } from 'styled-components';
-import Feedback from './pages/Feedback';
-import Game from './pages/Game';
-import Login from './pages/Login';
-import Ranking from './pages/Ranking';
-import Settings from './pages/Settings';
+import Feedback from './pages/Feedback/Feedback';
+import Game from './pages/Game/Game';
+import Login from './pages/Login/Login';
+import Ranking from './pages/Ranking/Ranking';
+import Settings from './pages/Settings/Settings';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -33,8 +31,3 @@ export default function App() {
     </div>
   );
 }
-
-/* <header className="App-header">
-  <img src={ logo } className="App-logo" alt="logo" />
-  <p>SUA VEZ</p>
-</header> */

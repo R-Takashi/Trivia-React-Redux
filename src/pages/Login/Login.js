@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import LoginStyle from './Login/style';
-import Input from './components/Input';
-import { setStorage } from '../services/localStorage';
-import { saveData } from '../redux/actions';
-import logo from '../trivia.png';
+import LoginStyle from './style';
+import Input from '../components/Input';
+import { setStorage } from '../../services/localStorage';
+import { saveData } from '../../redux/actions';
+import logo from '../../trivia.png';
 
 class Login extends Component {
   constructor() {

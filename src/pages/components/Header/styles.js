@@ -4,7 +4,7 @@ const HeaderStyle = styled.header`
 height: 150px;
   display: flex;
   align-items: center;
-  background-color: #463186;
+  background-color: #343434;
   color: #fff;
   justify-content: space-between;
 
@@ -22,6 +22,7 @@ height: 150px;
       margin-left: 20px;
       border-radius: 50%;
       margin-right: 20px;
+      animation: rotation infinite 3s  both;
     }
   }
 
@@ -36,7 +37,11 @@ height: 150px;
     text-align: center;
     font-weight: bold;
     font-size: 40px;
+
   }
+
+  @keyframes rotation { from { transform: rotate(0deg); } 
+  to { transform: rotate(359deg); } }
 
 `;
 

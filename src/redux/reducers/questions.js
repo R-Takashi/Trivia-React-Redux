@@ -1,4 +1,4 @@
-import { GET_QUESTIONS } from '../actions';
+import { GET_QUESTIONS, RESET_QUESTIONS } from '../actions';
 
 const INITIAL_STATE = {
   response_code: 3,
@@ -12,6 +12,12 @@ export default function questions(state = INITIAL_STATE, action) {
       ...state,
       results: action.results,
       response_code: action.response_code,
+    };
+
+  case RESET_QUESTIONS:
+    return {
+      ...state,
+      ...INITIAL_STATE,
     };
 
   default:

@@ -51,7 +51,6 @@ class Questions extends Component {
         score: pontos,
         assertions: acertos,
       });
-      // const { assertions: a } = this.state;
       addScore(pontos);
       addAssertions(acertos);
     }
@@ -86,6 +85,7 @@ class Questions extends Component {
       incorrect: 'yellow',
       seconds: 30,
       nextButton: false,
+      isDisabled: false,
     });
 
     this.timer();
@@ -116,8 +116,14 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.props;
-    const { questionsIndex, correct, incorrect,
-      isDisabled = false, seconds, nextButton } = this.state;
+    const {
+      questionsIndex,
+      correct,
+      incorrect,
+      isDisabled,
+      seconds,
+      nextButton,
+    } = this.state;
     const currentQuestion = questions[questionsIndex];
     const answers = this.shuffleArray([...currentQuestion.incorrect_answers,
       currentQuestion.correct_answer]);

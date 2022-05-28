@@ -20,11 +20,25 @@ class Questions extends Component {
       score: 0,
       nextButton: false,
       assertions: 0,
+      shuffledAnswers: [],
     };
   }
 
   componentDidMount() {
     this.timer();
+
+    const answers = this.shuffledAnswers();
+    this.setState({ shuffledAnswers: answers });
+  }
+
+  shuffledAnswers = () => {
+    const { questions } = this.props;
+    const { questionsIndex } = this.state;
+    const currentQuestion = questions[questionsIndex];
+    const answers = this.shuffleArray([...currentQuestion.incorrect_answers,
+      currentQuestion.correct_answer]);
+
+    return answers;
   }
 
   shuffleArray = (inputArray) => {
@@ -52,7 +66,6 @@ class Questions extends Component {
         score: pontos,
         assertions: acertos,
       });
-      // const { assertions: a } = this.state;
       addScore(pontos);
       addAssertions(acertos);
     }
@@ -89,6 +102,8 @@ class Questions extends Component {
       seconds: 30,
       nextButton: false,
       isDisabled: false,
+    }, () => {
+      this.setState({ shuffledAnswers: this.shuffledAnswers() });
     });
 
     this.timer();
@@ -120,10 +135,8 @@ class Questions extends Component {
   render() {
     const { questions } = this.props;
     const { questionsIndex, correct, incorrect,
-      isDisabled = false, seconds, nextButton } = this.state;
+      isDisabled = false, seconds, nextButton, shuffledAnswers } = this.state;
     const currentQuestion = questions[questionsIndex];
-    const answers = this.shuffleArray([...currentQuestion.incorrect_answers,
-      currentQuestion.correct_answer]);
 
     return (
       <Container>
@@ -135,7 +148,7 @@ class Questions extends Component {
         </TimerCategory>
         <QuestionStyle>
           <h1 data-testid="question-text">{ questions[questionsIndex].question }</h1>
-          {answers.map((answer, index) => (
+          {shuffledAnswers.map((answer, index) => (
             <div key={ index } data-testid="answer-options">
               <button
                 id={ (answer === currentQuestion.correct_answer) ? 'correct' : 'wrong' }

@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import App from "../App";
 import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 import userEvent from '@testing-library/user-event';
-import jsonwebtoken from 'jsonwebtoken';
+import { questionsMocks } from './mocks/questionsMocks';
 
 describe('Testando o componente Login', () => {
   it('Verificando se o botão está desabilitado quando é passado dados inválidos.', () => {
@@ -34,25 +34,7 @@ describe('Testando o componente Login', () => {
   });
 
   it('Verificando se, ao apertar no botão Play, é redirecionado à uma nova página.', async () => {
-    const INITIAL_STATE = {
-      questions: {
-        response_code: 0,
-        results:[
-          {
-            category: "Entertainment: Video Games",
-            type: "multiple",
-            difficulty: "easy",
-            question: "What is the first weapon you acquire in Half-Life?",
-            correct_answer: "A crowbar",
-            incorrect_answers: [
-              "A pistol",
-              "The H.E.V suit",
-              "Your fists"
-            ],
-          },
-        ],
-      }
-    };
+    const INITIAL_STATE = questionsMocks;
 
     const {history} = renderWithRouterAndRedux(<App />, INITIAL_STATE);
     

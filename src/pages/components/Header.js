@@ -7,7 +7,7 @@ import logo from '../../trivia.png';
 
 class Header extends Component {
   render() {
-    const { email, name, score = 0 } = this.props;
+    const { email, name, score } = this.props;
     const hash = md5(email).toString();
 
     return (

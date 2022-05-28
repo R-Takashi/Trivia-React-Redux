@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import App from "../App";
 import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 import userEvent from '@testing-library/user-event';
-import Feedback from '../pages/Feedback';
+import Feedback from '../pages/Feedback/Feedback';
 
 describe('Testando o componente Feedback', () => {
   it('Verificando se os botões de "ranking" e "play again" estão habilitados.', () => {

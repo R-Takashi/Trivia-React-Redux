@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Container from './Game/styles';
-import { fetchQuestions } from '../redux/actions';
-import Header from './components/Header';
-import Questions from './components/Questions';
-import { getStorage } from '../services/localStorage';
+import Container from './styles';
+import { fetchQuestions } from '../../redux/actions';
+import Header from '../components/Header/Header';
+import Questions from '../components/Questions/Questions';
+import { getStorage } from '../../services/localStorage';
 
 class Game extends Component {
   async componentDidMount() {

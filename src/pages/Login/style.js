@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const LoginStyle = styled.form`
   text-align: center;
   align-items: center;
-  background-color: #16161a;
+  background-color: #545454;
   color: white;
   display: flex;
   flex-direction: column;
@@ -20,6 +20,8 @@ const LoginStyle = styled.form`
     border-radius: 10px;
     padding: 10px;
     width: 400px;
+    height: 300px;
+    background-color: #343434
   }
 
   button{
@@ -30,13 +32,13 @@ const LoginStyle = styled.form`
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    background-color: #583EA8;
+    background-color: #CC9F38;
     text-transform: uppercase;
     font-weight: bold;
     
       :hover {
-        background-color: #7f5af0;
-        color: white;
+        box-shadow: 0 2px 2px white;
+        padding: 11px;
       }
 
       :disabled {

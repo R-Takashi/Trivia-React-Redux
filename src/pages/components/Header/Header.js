@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import HeaderStyle from './Header/styles';
-import logo from '../../trivia.png';
+import HeaderStyle from './styles';
+import logo from '../../../trivia.png';
 
 class Header extends Component {
   render() {
@@ -16,7 +16,7 @@ class Header extends Component {
           <img
             data-testid="header-profile-picture"
             src={ `https://www.gravatar.com/avatar/${hash}` }
-            alt={ name }
+            alt="imagem-perfil"
           />
           <h3 data-testid="header-player-name">
             { name }

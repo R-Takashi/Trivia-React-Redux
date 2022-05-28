@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
-import { QuestionStyle, TimerCategory, Container } from './Questions/styles';
-import { setScore, setAssertions } from '../../redux/actions';
-import { getRanking, setRanking } from '../../services/localStorage';
+import { QuestionStyle, TimerCategory, Container } from './styles';
+import { setScore, setAssertions } from '../../../redux/actions';
+import { getRanking, setRanking } from '../../../services/localStorage';
 
 let timerInterval;
 class Questions extends Component {
@@ -13,8 +13,8 @@ class Questions extends Component {
 
     this.state = {
       questionsIndex: 0,
-      correct: '#7f5af0',
-      incorrect: '#7f5af0',
+      correct: '#CC9F38',
+      incorrect: '#CC9F38',
       isDisabled: false,
       seconds: 30,
       score: 0,
@@ -97,8 +97,8 @@ class Questions extends Component {
     this.setState({
       questionsIndex: questionsIndex < questions.length - 1
         ? questionsIndex + 1 : 0,
-      correct: '#7f5af0',
-      incorrect: '#7f5af0',
+      correct: '#CC9F38',
+      incorrect: '#CC9F38',
       seconds: 30,
       nextButton: false,
       isDisabled: false,
@@ -129,6 +129,8 @@ class Questions extends Component {
       isDisabled: true,
       seconds: 'Acabou o Tempo',
       nextButton: true,
+      correct: 'rgb(6, 240, 15)',
+      incorrect: 'red',
     });
   }
 

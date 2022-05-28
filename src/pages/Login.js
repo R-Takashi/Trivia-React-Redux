@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import LoginStyle from './Login/style';
 import Input from './components/Input';
 import { setStorage } from '../services/localStorage';
 import { saveData } from '../redux/actions';
+import logo from '../trivia.png';
 
 class Login extends Component {
   constructor() {
@@ -48,13 +50,14 @@ class Login extends Component {
     const { email, player, isDisabled } = this.state;
     const { history } = this.props;
     return (
-      <div>
+      <LoginStyle>
+        <img src={ logo } alt="logo" />
         <form>
           <Input
             id="input-player-name"
             name="player"
             type="text"
-            label="Nome: "
+            label="NOME "
             placeholder="Insira seu nome"
             value={ player }
             func={ this.handleChange }
@@ -63,29 +66,32 @@ class Login extends Component {
             id="input-gravatar-email"
             name="email"
             type="email"
-            label="Email: "
+            label="EMAIL "
             placeholder="Insira seu email"
             value={ email }
             func={ this.handleChange }
           />
-          <button
-            type="button"
-            data-testid="btn-play"
-            disabled={ isDisabled }
-            onClick={ this.onSubmit }
-          >
-            Play
-          </button>
 
-          <button
-            type="button"
-            data-testid="btn-settings"
-            onClick={ () => history.push('/settings') }
-          >
-            Configurações
-          </button>
+          <section>
+            <button
+              type="button"
+              data-testid="btn-play"
+              disabled={ isDisabled }
+              onClick={ this.onSubmit }
+            >
+              Play
+            </button>
+
+            <button
+              type="button"
+              data-testid="btn-settings"
+              onClick={ () => history.push('/settings') }
+            >
+              Configurações
+            </button>
+          </section>
         </form>
-      </div>
+      </LoginStyle>
     );
   }
 }

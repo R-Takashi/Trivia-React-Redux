@@ -57,7 +57,6 @@ class Questions extends Component {
     const scoreTen = 10;
     const { score, seconds, assertions } = this.state;
     if (target.id === 'correct') {
-      console.log('to aqui');
       const { addScore, addAssertions } = this.props;
       const acertos = assertions + 1;
       const pontos = score + scoreTen

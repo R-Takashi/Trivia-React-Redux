@@ -7,16 +7,27 @@ import Container from '../Game/styles';
 import { FinalScore, FinalPhrase, Buttons } from './styles';
 
 class Feedback extends Component {
-  playAgain = () => {
-    const { history, addAssertions, addScore, clear } = this.props;
-    history.push('/');
+  clear = () => {
+    const { addAssertions, addScore, clear } = this.props;
     addAssertions(0);
     addScore(0);
     clear();
   }
 
+  playAgain = () => {
+    const { history } = this.props;
+    this.clear();
+    history.push('/');
+  }
+
+  toRanking = () => {
+    const { history } = this.props;
+    this.clear();
+    history.push('/ranking');
+  }
+
   render() {
-    const { history, assertions, score } = this.props;
+    const { assertions, score } = this.props;
     const threeAssertions = 3;
     return (
       <Container>
@@ -64,7 +75,7 @@ class Feedback extends Component {
           <button
             data-testid="btn-ranking"
             type="button"
-            onClick={ () => history.push('/ranking') }
+            onClick={ this.toRanking }
           >
             Ranking
           </button>

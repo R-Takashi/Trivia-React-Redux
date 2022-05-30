@@ -6,6 +6,7 @@ import Game from './pages/Game/Game';
 import Login from './pages/Login/Login';
 import Ranking from './pages/Ranking/Ranking';
 import Settings from './pages/Settings/Settings';
+import Notfound from './pages/NotFound.js/Notfound';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/settings" component={ Settings } />
         <Route path="/feedback" component={ Feedback } />
         <Route path="/ranking" component={ Ranking } />
+        <Route path="*" component={ Notfound } />
       </Switch>
     </div>
   );

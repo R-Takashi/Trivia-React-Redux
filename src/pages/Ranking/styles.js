@@ -28,7 +28,7 @@ export const RankingStyle = styled.div`
     ::-webkit-scrollbar {
       display: none;
     }
-    
+    scrollbar-width: none;
   }
   button{
     margin-bottom: 30px;
@@ -46,7 +46,7 @@ export const RankingStyle = styled.div`
       :hover {
         box-shadow: 0 2px 2px white;
       }
-  
+    }
 `;
 
 export const RankingCard = styled.li`
@@ -64,7 +64,6 @@ export const RankingCard = styled.li`
     margin-left: 10px;
     grid-area: "rank";
     color: white;
-    background-color: ;
 
   }
 

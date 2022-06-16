@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginStyle = styled.form`
+const LoginStyle = styled.div`
   text-align: center;
   align-items: center;
   background-color: #545454;
@@ -55,6 +55,7 @@ const LoginStyle = styled.form`
     border-radius: 10px;
     border: none;
     outline: none;
+    text-align: center;
   }
 
   section{

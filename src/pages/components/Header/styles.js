@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const HeaderStyle = styled.header`
-height: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   background-color: #343434;
@@ -37,7 +37,6 @@ height: 150px;
     text-align: center;
     font-weight: bold;
     font-size: 40px;
-
   }
 
   @keyframes rotation { from { transform: rotate(0deg); } 

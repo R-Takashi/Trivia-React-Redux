@@ -1,7 +1,6 @@
 import { SAVE_DATA, SET_SCORE, SET_ASSERTIONS } from '../actions';
 
 const INITIAL_STATE = {
-
   name: '',
   gravatarEmail: '',
   score: 0,

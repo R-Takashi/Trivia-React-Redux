@@ -10,8 +10,9 @@ import { getStorage } from '../../services/localStorage';
 class Game extends Component {
   async componentDidMount() {
     const token = getStorage();
-    const { getQuestions } = this.props;
-    await getQuestions(token);
+    const { getQuestions, config } = this.props;
+    console.log(config);
+    await getQuestions(token, config);
     this.checkToken();
   }
 
@@ -34,13 +35,13 @@ class Game extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getQuestions: (token) => dispatch(fetchQuestions(token)),
+  getQuestions: (token, config) => dispatch(fetchQuestions(token, config)),
 });
 
 const mapStateToProps = (state) => ({
   response_code: state.questions.response_code,
   results: state.questions.results,
-  getQuestions: fetchQuestions,
+  config: state.questions.config,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
@@ -50,4 +51,5 @@ Game.propTypes = {
   history: PropTypes.objectOf(PropTypes.shape).isRequired,
   getQuestions: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  config: PropTypes.objectOf(PropTypes.shape).isRequired,
 };

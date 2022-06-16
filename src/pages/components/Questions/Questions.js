@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
+import he from 'he';
 import { QuestionStyle, TimerCategory, Container } from './styles';
 import { setScore, setAssertions } from '../../../redux/actions';
 import { getRanking, setRanking } from '../../../services/localStorage';
@@ -154,7 +155,11 @@ class Questions extends Component {
           <h3 data-testid="question-category">{ questions[questionsIndex].category }</h3>
         </TimerCategory>
         <QuestionStyle>
-          <h1 data-testid="question-text">{ questions[questionsIndex].question }</h1>
+          <h1 data-testid="question-text">
+            {
+              he.decode(questions[questionsIndex].question)
+            }
+          </h1>
           {shuffledAnswers.map((answer, index) => (
             <div key={ index } data-testid="answer-options">
               <button
@@ -169,7 +174,7 @@ class Questions extends Component {
                 onClick={ (event) => this.onClick(currentQuestion, event) }
                 disabled={ isDisabled }
               >
-                {answer}
+                { he.decode(answer) }
               </button>
             </div>
           ))}

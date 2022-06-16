@@ -1,8 +1,14 @@
-import { GET_QUESTIONS, RESET_QUESTIONS } from '../actions';
+import { GET_QUESTIONS, RESET_QUESTIONS, SET_CONFIG } from '../actions';
 
 const INITIAL_STATE = {
   response_code: 3,
   results: [],
+  config: {
+    id: '',
+    difficulty: '',
+    type: '',
+    amount: 5,
+  },
 };
 
 export default function questions(state = INITIAL_STATE, action) {
@@ -18,6 +24,12 @@ export default function questions(state = INITIAL_STATE, action) {
     return {
       ...state,
       ...INITIAL_STATE,
+    };
+
+  case SET_CONFIG:
+    return {
+      ...state,
+      config: action.config,
     };
 
   default:

@@ -22,7 +22,8 @@ export const RankingStyle = styled.div`
     width: 800px;
     border: 1px solid #FAFAFA;
     border-radius: 10px;
-    height: 70%;
+    height: 600px;
+    margin-top: 30px;
     overflow-y: scroll;
     background-color: #343438;
     ::-webkit-scrollbar {
@@ -31,6 +32,7 @@ export const RankingStyle = styled.div`
     scrollbar-width: none;
   }
   button{
+    margin-top: 30px;
     margin-bottom: 30px;
     width: 300px;
     padding: 14px;

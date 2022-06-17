@@ -10,7 +10,6 @@ import Notfound from './pages/NotFound.js/Notfound';
 
 const GlobalStyle = createGlobalStyle`
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');

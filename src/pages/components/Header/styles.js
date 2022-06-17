@@ -37,6 +37,7 @@ const HeaderStyle = styled.header`
   }
 
   p {
+    margin-top: 5px;
     text-align: center;
     font-weight: bold;
     font-size: 40px;

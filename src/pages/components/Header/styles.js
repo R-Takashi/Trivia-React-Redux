@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const HeaderStyle = styled.header`
+  top: 0;
+  width: 100vw;
   height: 150px;
   display: flex;
   align-items: center;
@@ -30,6 +32,7 @@ const HeaderStyle = styled.header`
     border-radius: 10px;
     border: 1px solid white;
     margin-right: 50px;
+    height: 80px;
     padding: 10px;
   }
 

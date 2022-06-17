@@ -5,12 +5,13 @@ export const RankingStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  height: 100vh;
 
   h1{
+    top: 0;
     color: white;
     background-color: #343434;
-    width: 100%;
+    width: 100vw;
     padding: 30px;
     text-align: center;
   }

@@ -11,7 +11,6 @@ class Game extends Component {
   async componentDidMount() {
     const token = getStorage();
     const { getQuestions, config } = this.props;
-    console.log(config);
     await getQuestions(token, config);
     this.checkToken();
   }

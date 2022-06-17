@@ -40,10 +40,8 @@ export const fetchQuestions = (token, config) => async (dispatch) => {
   try {
     const { id = '', amount, difficulty = '', type = '' } = config;
     const URL = `https://opentdb.com/api.php?amount=${amount}&category=${id}&difficulty=${difficulty}&type=${type}&token=${token}`;
-    console.log(URL);
     const response = await fetch(URL);
     const data = await response.json();
-    console.log(data);
     dispatch(getQuestions(data));
   } catch (error) {
     return error;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
 import he from 'he';
-import { QuestionStyle, TimerCategory, Container } from './styles';
+import { QuestionStyle, TimerCategory } from './styles';
 import { setScore, setAssertions } from '../../../redux/actions';
 import { getRanking, setRanking } from '../../../services/localStorage';
 
@@ -147,7 +147,7 @@ class Questions extends Component {
     const currentQuestion = questions[questionsIndex];
 
     return (
-      <Container>
+      <div>
         <TimerCategory>
           {seconds === 0 && this.timeout()}
           <h2>Timer</h2>
@@ -188,7 +188,7 @@ class Questions extends Component {
               Next
             </button>)}
         </QuestionStyle>
-      </Container>
+      </div>
     );
   }
 }

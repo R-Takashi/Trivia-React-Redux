@@ -49,7 +49,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 margin: 30px 50px;
-height: 100px;
+height: auto;
 border-radius: 10px;
 box-shadow: 0 4px 4px white;
     h3{
